@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 export function VenueCard({ venue }) {
   const imageUrl = venue.media.length > 0 ? venue.media[0].url : null;
   const imageAlt = venue.media.length > 0 ? venue.media[0].alt : "No image available";
+  const location = venue.location ? `${venue.location.city}, ${venue.location.country}` : "Location not available";
+  const price = venue.price ? `$${venue.price.toFixed(2)}` : "Price not available";
 
   return (
     <Col md={3} className="mb-4">
@@ -14,7 +16,8 @@ export function VenueCard({ venue }) {
         {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} />}
         <Card.Body>
           <Card.Title>{venue.name}</Card.Title>
-          <Card.Text>{venue.description}</Card.Text>
+          <Card.Text>Location: {location}</Card.Text>
+          <Card.Text>Price: {price},- per night</Card.Text>
           <Link to={`/venues/${venue.id}`}>
             <Button variant="primary">View Details</Button>
           </Link>
