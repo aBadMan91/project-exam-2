@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
-// import { VenueCard } from "../../components/VenueCard";
+import { VenueCard } from "../../components/VenueCard";
 
 export function HomePage() {
   const { data, isLoading, isError } = useFetch("https://v2.api.noroff.dev/holidaze/venues");
@@ -22,6 +22,7 @@ export function HomePage() {
   return (
     <div className="container mt-5">
       <h1>Venues</h1>
+      <div className="row">{data.length > 0 ? data.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <div className="col-12 text-center">No venues available</div>}</div>
     </div>
   );
 }
