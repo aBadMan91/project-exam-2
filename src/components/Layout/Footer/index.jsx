@@ -1,5 +1,9 @@
 import React from "react";
 
 export function Footer() {
-  return <footer>Footer</footer>;
+  return (
+    <footer className="d-flex justify-content-center align-items-center text-white mt-2">
+      <p className="my-3">&copy; 2025 Holidaze</p>
+    </footer>
+  );
 }

@@ -1,0 +1,27 @@
+@media (max-width: 575px) {
+  .custom-navbar-collapse {
+    max-width: 250px;
+    background-color: #00619b;
+    // border-radius: 10px 0 0 10px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 62px;
+    z-index: 1050;
+  }
+}
+
+.navbar-toggler {
+  border-color: white;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.75);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1); // Turns the icon white
+}

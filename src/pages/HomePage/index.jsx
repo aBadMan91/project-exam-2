@@ -1,28 +1,37 @@
 import React, { useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { VenueCard } from "../../components/VenueCard";
+import { Container, Row, Spinner, Alert } from "react-bootstrap";
 
 export function HomePage() {
   const { data, isLoading, isError } = useFetch("https://v2.api.noroff.dev/holidaze/venues");
 
   useEffect(() => {
-    document.title = "Home";
+    document.title = "Holidaze | Home";
   }, []);
 
-  console.log(data);
-
   if (isLoading) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return (
+      <Container className="text-center mt-5">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    );
   }
 
   if (isError) {
-    return <div className="alert alert-danger mt-5">Error</div>;
+    return (
+      <Container className="mt-5">
+        <Alert variant="danger">Error fetching venues</Alert>
+      </Container>
+    );
   }
 
   return (
-    <div className="container mt-5">
+    <Container className="mt-5">
       <h1>Venues</h1>
-      <div className="row">{data.length > 0 ? data.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <div className="col-12 text-center">No venues available</div>}</div>
-    </div>
+      <Row>{data.length > 0 ? data.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <p className="text-center">No venues available</p>}</Row>
+    </Container>
   );
 }

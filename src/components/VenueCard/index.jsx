@@ -11,7 +11,7 @@ export function VenueCard({ venue }) {
   const price = venue.price ? `$${venue.price.toFixed(2)}` : "Price not available";
 
   return (
-    <Col md={3} className="mb-4">
+    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
       <Card>
         {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} />}
         <Card.Body>
