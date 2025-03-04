@@ -14,6 +14,7 @@ export function useLocalStorage(key, initialValue) {
   useEffect(() => {
     try {
       localStorage.setItem(key, JSON.stringify(storedValue));
+      // window.dispatchEvent(new Event("localStorageChange"));
     } catch (error) {
       console.error("Error saving to localStorage", error);
     }
@@ -23,6 +24,7 @@ export function useLocalStorage(key, initialValue) {
     try {
       localStorage.removeItem(key);
       setStoredValue(initialValue);
+      // window.dispatchEvent(new Event("localStorageChange"));
     } catch (error) {
       console.error("Error removing localStorage key:", key, error);
     }

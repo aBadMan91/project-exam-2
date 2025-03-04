@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RegisterForm } from "../../components/Form/RegisterForm";
+import { Register } from "../../components/Auth/Register";
 import Container from "react-bootstrap/Container";
 
 export function RegisterPage() {
@@ -11,7 +11,7 @@ export function RegisterPage() {
     <Container className="mt-5">
       <h1>Register</h1>
       <p>Please register with your “stud.noroff.no” email.</p>
-      <RegisterForm />
+      <Register />
     </Container>
   );
 }

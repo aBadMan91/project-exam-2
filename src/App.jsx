@@ -5,6 +5,7 @@ import { HomePage } from "./pages/";
 import { VenuePage } from "./pages/VenuePage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
+import { Logout } from "./components/Auth/Logout";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="venues/:id" element={<VenuePage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="logout" element={<Logout />} />
       </Route>
     </Routes>
   );

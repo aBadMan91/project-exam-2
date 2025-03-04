@@ -4,18 +4,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 const schema = yup.object().shape({
+  name: yup.string().min(3).max(10).required("Name must be at least 3 characters"),
   email: yup
     .string()
     .email("Email is invalid")
     .matches(/@stud\.noroff\.no$/, "Must be a @stud.noroff.no email")
     .required("Email is required"),
   password: yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+  venueManager: yup.boolean(),
 });
 
-export function LoginForm() {
+export function Register() {
   const {
     register,
     handleSubmit,
@@ -26,11 +27,9 @@ export function LoginForm() {
 
   const navigate = useNavigate();
 
-  const [, setProfile] = useLocalStorage("profile", null);
-
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("https://v2.api.noroff.dev/auth/login", {
+      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,15 +38,12 @@ export function LoginForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        throw new Error("Registration failed");
       }
 
       const result = await response.json();
-      console.log("Login successful", result);
-
-      setProfile(result.data);
-
-      navigate("/");
+      console.log("Registration successful", result);
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -55,6 +51,12 @@ export function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-3" controlId="formName">
+        <Form.Label>Name:</Form.Label>
+        <Form.Control type="text" {...register("name")} isInvalid={!!errors.name} />
+        <Form.Control.Feedback type="invalid">{errors.name?.message}</Form.Control.Feedback>
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formEmail">
         <Form.Label>Email:</Form.Label>
         <Form.Control type="email" {...register("email")} isInvalid={!!errors.email} />
@@ -67,8 +69,12 @@ export function LoginForm() {
         <Form.Control.Feedback type="invalid">{errors.password?.message}</Form.Control.Feedback>
       </Form.Group>
 
+      <Form.Group className="mb-3" controlId="formVenueManager">
+        <Form.Check type="checkbox" label="Venue Manager" {...register("venueManager")} />
+      </Form.Group>
+
       <Button variant="primary" type="submit">
-        Login
+        Register
       </Button>
     </Form>
   );
