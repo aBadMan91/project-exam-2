@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import { Container, Row, Spinner, Alert } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert, Carousel } from "react-bootstrap";
+import { VenueCarousel } from "../../components/Carousel";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -36,7 +37,12 @@ export function VenuePage() {
   return (
     <Container className="mt-5">
       <Row>
-        <h1>{venue.name}</h1>
+        <Col xs={12}>
+          <h1>{venue.name}</h1>
+        </Col>
+        <Col xs={12}>
+          <VenueCarousel media={venue.media} />
+        </Col>
       </Row>
     </Container>
   );
