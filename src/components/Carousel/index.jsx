@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Carousel, Alert, Container, Row, Col, Image } from "react-bootstrap";
-import "./index.scss"; // Import the SCSS file
+import "./index.scss";
 
 export function VenueCarousel({ media }) {
   const [index, setIndex] = useState(0);
@@ -15,16 +15,13 @@ export function VenueCarousel({ media }) {
 
   return (
     <Container>
-      {/* Main Carousel */}
-      <Carousel activeIndex={index} onSelect={(selectedIndex) => setIndex(selectedIndex)} interval={null}>
+      <Carousel activeIndex={index} onSelect={(selectedIndex) => setIndex(selectedIndex)} interval={null} indicators={false}>
         {media.map((mediaItem, idx) => (
           <Carousel.Item key={idx}>
-            <img src={mediaItem.url} alt={mediaItem.alt || "Venue image"} className="d-block w-100 img-fluid carousel-img" />
+            <Image src={mediaItem.url} alt={mediaItem.alt || "Venue image"} className="d-block w-100 img-fluid carousel-img" />
           </Carousel.Item>
         ))}
       </Carousel>
-
-      {/* Thumbnails */}
       <Row className="mt-3 justify-content-center">
         {media.map((mediaItem, idx) => (
           <Col xs={3} sm={2} md={1} key={idx} className="px-1">

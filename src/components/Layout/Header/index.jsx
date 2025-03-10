@@ -26,8 +26,8 @@ export function Header() {
   }, [setProfile]);
 
   return (
-    <header>
-      <Navbar expand="sm" className="mb-2 ">
+    <header className="sticky-top">
+      <Navbar expand="sm" className="mb-2">
         <Container fluid className="my-3">
           <Navbar.Brand as={Link} to="/">
             Holidaze

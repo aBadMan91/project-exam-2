@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import { Container, Row, Col, Spinner, Alert, Carousel } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import { VenueCarousel } from "../../components/Carousel";
+import { Calendar } from "../../components/Calendar";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -39,9 +40,26 @@ export function VenuePage() {
       <Row>
         <Col xs={12}>
           <h1>{venue.name}</h1>
+          <p>
+            {venue.location.city}, {venue.location.country}
+          </p>
         </Col>
         <Col xs={12}>
           <VenueCarousel media={venue.media} />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} lg={8}>
+          <h2>Price: {venue.price},- per night</h2>
+          <h3>Rating: {venue.rating}/5</h3>
+          <p>
+            Wi-Fi: {venue.meta.wifi ? "Yes" : "No"}, Parking: {venue.meta.parking ? "Yes" : "No"}, Breakfast: {venue.meta.breakfast ? "Yes" : "No"}, Pets: {venue.meta.pets ? "Allowed" : "Not Allowed"}
+          </p>
+          <p>Max capacity: {venue.maxGuests} guests.</p>
+          <p>{venue.description}</p>
+        </Col>
+        <Col xs={12} lg={4}>
+          <Calendar />
         </Col>
       </Row>
     </Container>
