@@ -6,6 +6,7 @@ import { VenuePage } from "./pages/VenuePage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { Logout } from "./components/Auth/Logout";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="profile/:name" element={<ProfilePage />} />
       </Route>
     </Routes>
   );

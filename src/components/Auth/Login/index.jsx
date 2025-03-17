@@ -47,6 +47,9 @@ export function Login() {
 
       setProfile(result.data);
 
+      localStorage.setItem("profile", JSON.stringify(result.data));
+      localStorage.setItem("token", result.data.accessToken);
+
       window.dispatchEvent(new Event("storage"));
 
       navigate("/");
