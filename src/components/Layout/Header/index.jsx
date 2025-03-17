@@ -37,8 +37,8 @@ export function Header() {
             <Nav>
               {isLoggedIn ? (
                 <>
-                  <Nav.Link as={Link} to="/profile">
-                    Profile
+                  <Nav.Link as={Link} to={`/profile/${profile?.name}`}>
+                    {profile?.name || "Profile"}
                   </Nav.Link>
                   <Nav.Link as={Link} to="/logout">
                     Logout
