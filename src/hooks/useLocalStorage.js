@@ -24,6 +24,9 @@ export function useLocalStorage(key, initialValue) {
     try {
       localStorage.removeItem(key);
       setStoredValue(initialValue);
+      if (key === "profile") {
+        localStorage.removeItem("token");
+      }
       // window.dispatchEvent(new Event("localStorageChange"));
     } catch (error) {
       console.error("Error removing localStorage key:", key, error);
