@@ -7,7 +7,7 @@ import { Calendar } from "../../components/Calendar";
 
 export function VenuePage() {
   const { id } = useParams();
-  const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}`);
+  const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_owner=true`);
 
   useEffect(() => {
     if (venue) {
@@ -52,6 +52,7 @@ export function VenuePage() {
         <Col xs={12} lg={8}>
           <h2>Price: {venue.price},- per night</h2>
           <h3>Rating: {venue.rating}/5</h3>
+          <p>Owner: {venue.owner.name}</p>
           <p>
             Wi-Fi: {venue.meta.wifi ? "Yes" : "No"}, Parking: {venue.meta.parking ? "Yes" : "No"}, Breakfast: {venue.meta.breakfast ? "Yes" : "No"}, Pets: {venue.meta.pets ? "Allowed" : "Not Allowed"}
           </p>
