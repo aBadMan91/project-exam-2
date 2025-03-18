@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
-import { Container, Col, Row, Spinner, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 
 export function ProfilePage() {
   const { name } = useParams();
@@ -37,7 +38,54 @@ export function ProfilePage() {
   return (
     <Container className="mt-5">
       <Row>
-        <Col xs={12}>{profile.name}</Col>
+        <Col className="text-center">
+          <Image src={profile.avatar.url} alt={profile.avatar.alt} />
+        </Col>
+      </Row>
+      <Row className="mt-3 mb-5">
+        <Col xs={12} className="text-center">
+          {profile.name}
+        </Col>
+        <Col xs={12} className="text-center">
+          {profile.email}
+        </Col>
+        {profile.venueManager && (
+          <Col xs={12} className="text-center">
+            Venue Manager
+          </Col>
+        )}
+      </Row>
+      <Row className="mt-2">
+        <Col>
+          <Button as={Link} to={`/profile/${profile.name}/bookings`} className="text-start w-100 d-flex justify-content-between align-items-center">
+            <span>Your Bookings</span>
+            <span>&gt;</span>
+          </Button>
+        </Col>
+      </Row>
+      <Row className="mt-2">
+        <Col>
+          <Button as={Link} to={`/profile/${profile.name}/venues`} className="text-start w-100 d-flex justify-content-between align-items-center">
+            <span>Your Venues</span>
+            <span>&gt;</span>
+          </Button>
+        </Col>
+      </Row>
+      <Row className="mt-2">
+        <Col>
+          <Button as={Link} to={`/profile/${profile.name}/edit`} className="text-start w-100 d-flex justify-content-between align-items-center">
+            <span>Edit Profile</span>
+            <span>&gt;</span>
+          </Button>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col>
+          <Button as={Link} to="/logout" className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
+            <span>Logout</span>
+            <span>&gt;</span>
+          </Button>
+        </Col>
       </Row>
     </Container>
   );

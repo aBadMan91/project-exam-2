@@ -4,7 +4,7 @@ import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { Link } from "react-router-dom";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 
-export function ProfileBookings() {
+export function ProfileEdit() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
   const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);

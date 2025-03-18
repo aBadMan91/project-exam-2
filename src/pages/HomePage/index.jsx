@@ -15,7 +15,7 @@ export function HomePage() {
   const currentVenues = data.slice((currentPage - 1) * venuesPerPage, currentPage * venuesPerPage);
 
   useEffect(() => {
-    document.title = `Holidaze | Page ${currentPage}`;
+    document.title = `Holidaze | Home | Page ${currentPage}`;
   }, [currentPage]);
 
   const handlePageChange = (pageNumber) => {
