@@ -33,4 +33,12 @@ export function ProfileBookings() {
       </Container>
     );
   }
+
+  return (
+    <Container className="mt-5">
+      <Row>
+        <h1>Your Bookings</h1>
+      </Row>
+    </Container>
+  );
 }

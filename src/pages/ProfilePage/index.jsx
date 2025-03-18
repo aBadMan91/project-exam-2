@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { Link } from "react-router-dom";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
+import { Logout } from "../../components/Auth/Logout";
 
 export function ProfilePage() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
   const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
+  const [showLogout, setShowLogout] = useState(false);
 
   useEffect(() => {
     if (profile) {
@@ -34,6 +36,10 @@ export function ProfilePage() {
       </Container>
     );
   }
+
+  const handleLogoutClick = () => {
+    setShowLogout(true);
+  };
 
   return (
     <Container className="mt-5">
@@ -81,12 +87,13 @@ export function ProfilePage() {
       </Row>
       <Row className="mt-5">
         <Col>
-          <Button as={Link} to="/logout" className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
+          <Button onClick={handleLogoutClick} className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
             <span>Logout</span>
             <span>&gt;</span>
           </Button>
         </Col>
       </Row>
+      {showLogout && <Logout />}
     </Container>
   );
 }

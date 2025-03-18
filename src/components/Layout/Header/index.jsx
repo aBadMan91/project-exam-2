@@ -4,11 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { Logout } from "../../Auth/Logout";
 import "./index.scss";
 
 export function Header() {
   const [profile, setProfile] = useLocalStorage("profile", null);
   const [isLoggedIn, setIsLoggedIn] = useState(profile !== null);
+  const [showLogout, setShowLogout] = useState(false);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -25,6 +27,10 @@ export function Header() {
     };
   }, [setProfile]);
 
+  const handleLogoutClick = () => {
+    setShowLogout(true);
+  };
+
   return (
     <header className="sticky-top">
       <Navbar expand="sm" className="mb-2">
@@ -40,9 +46,7 @@ export function Header() {
                   <Nav.Link as={Link} to={`/profile/${profile?.name}`}>
                     {profile?.name || "Profile"}
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/logout">
-                    Logout
-                  </Nav.Link>
+                  <Nav.Link onClick={handleLogoutClick}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
@@ -58,6 +62,7 @@ export function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      {showLogout && <Logout />}
     </header>
   );
 }

@@ -33,4 +33,12 @@ export function ProfileVenues() {
       </Container>
     );
   }
+
+  return (
+    <Container className="mt-5">
+      <Row>
+        <h1>Your Venues</h1>
+      </Row>
+    </Container>
+  );
 }
