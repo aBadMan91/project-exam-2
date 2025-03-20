@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { VenueCard } from "../../components/VenueCard";
+import { SearchBar } from "../../components/SearchBar";
 import { Container, Row, Spinner, Alert, Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
@@ -46,6 +47,7 @@ export function HomePage() {
 
   return (
     <Container className="mt-5">
+      <SearchBar />
       <h1>Venues</h1>
       <Row>{currentVenues.length > 0 ? currentVenues.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <p className="text-center">No venues available</p>}</Row>
       <div className="d-flex justify-content-center mt-4">

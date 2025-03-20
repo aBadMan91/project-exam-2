@@ -10,6 +10,8 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { ProfileBookings } from "./pages/ProfileBookings";
 import { ProfileVenues } from "./pages/ProfileVenues";
 import { ProfileEdit } from "./pages/ProfileEdit";
+import { SearchBar } from "./components/SearchBar";
+import { SearchResultsPage } from "./pages/SearchResultsPage";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="profile/:name/bookings" element={<ProfileBookings />} />
         <Route path="profile/:name/venues" element={<ProfileVenues />} />
         <Route path="profile/:name/edit" element={<ProfileEdit />} />
+        <Route path="/" element={<SearchBar />} />
+        <Route path="/venues" element={<SearchResultsPage />} />
       </Route>
     </Routes>
   );
