@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
+import { useUpdateData } from "../../hooks/useUpdateData";
 import { Container, Col, Row, Spinner, Alert, Button, Form } from "react-bootstrap";
 
 export function ProfileEdit() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
-  const { data: profile, isLoading, isError, putData } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
+  const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
+  const { isError: isUpdateError, putData } = useUpdateData(token);
   const [venueManager, setVenueManager] = useState(false);
 
   useEffect(() => {
     if (profile) {
-      document.title = "Holidaze | " + profile.name + " Bookings";
+      document.title = "Holidaze | " + profile.name + " | Edit Profile";
       setVenueManager(profile.venueManager);
     }
   }, [profile]);
@@ -46,10 +48,10 @@ export function ProfileEdit() {
     );
   }
 
-  if (isError) {
+  if (isError || isUpdateError) {
     return (
       <Container className="mt-5">
-        <Alert variant="danger">Error fetching profile. Please try again later.</Alert>
+        <Alert variant="danger">Error fetching or updating profile. Please try again later.</Alert>
       </Container>
     );
   }
@@ -89,6 +91,8 @@ export function ProfileEdit() {
   );
 }
 
+// For safe keeping
+
 // import React, { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 // import { useAuthFetch } from "../../hooks/useAuthFetch";
@@ -97,12 +101,12 @@ export function ProfileEdit() {
 // export function ProfileEdit() {
 //   const { name } = useParams();
 //   const token = localStorage.getItem("token");
-//   const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
+//   const { data: profile, isLoading, isError, putData } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
 //   const [venueManager, setVenueManager] = useState(false);
 
 //   useEffect(() => {
 //     if (profile) {
-//       document.title = "Holidaze | " + profile.name + " Bookings";
+//       document.title = "Holidaze | " + profile.name + " | Edit Profile";
 //       setVenueManager(profile.venueManager);
 //     }
 //   }, [profile]);
@@ -119,23 +123,10 @@ export function ProfileEdit() {
 //     };
 
 //     try {
-//       const response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//           "X-Noroff-API-Key": import.meta.env.VITE_NOROFF_API_KEY,
-//         },
-//         body: JSON.stringify(updatedProfile),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error("Failed to update profile");
-//       }
-
+//       await putData(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, updatedProfile);
 //       alert("Profile updated successfully");
 //     } catch (error) {
-//       console.error(error);
+//       console.error("Error updating profile:", error);
 //       alert("Error updating profile. Please try again later.");
 //     }
 //   };
@@ -177,7 +168,7 @@ export function ProfileEdit() {
 
 //           <Form.Group className="mb-3" controlId="formAvatar">
 //             <Form.Label>Avatar:</Form.Label>
-//             <Form.Control type="text" defaultValue={profile.avatar} />
+//             <Form.Control type="text" defaultValue={profile.avatar.url} />
 //           </Form.Group>
 
 //           <Form.Group className="mb-3" controlId="formVenueManager">
