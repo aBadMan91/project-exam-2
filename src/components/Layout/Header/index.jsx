@@ -46,6 +46,9 @@ export function Header() {
                   <Nav.Link as={Link} to={`/profile/${profile?.name}`}>
                     {profile?.name || "Profile"}
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/create-venue">
+                    Create a Venue
+                  </Nav.Link>
                   <Nav.Link onClick={handleLogoutClick}>Logout</Nav.Link>
                 </>
               ) : (
