@@ -48,7 +48,7 @@ export function CreateVenue() {
     try {
       const createdVenue = await postData("https://v2.api.noroff.dev/holidaze/venues", data);
       console.log("Venue created:", createdVenue);
-      navigate("/venues");
+      navigate(`/venues/${createdVenue.id}`);
     } catch (error) {
       console.error("Failed to create venue:", error);
     }
@@ -101,8 +101,12 @@ export function CreateVenue() {
 
           <Form.Group className="mb-3" controlId="location">
             <Form.Label>Location:</Form.Label>
-            <Form.Control type="text" {...register("location")} isInvalid={!!errors.location} />
-            <Form.Control.Feedback type="invalid">{errors.location?.message}</Form.Control.Feedback>
+            <Form.Control type="text" placeholder="Address" {...register("location.address")} isInvalid={!!errors.location?.address} />
+            <Form.Control.Feedback type="invalid">{errors.location?.address?.message}</Form.Control.Feedback>
+            <Form.Control type="text" placeholder="City" {...register("location.city")} isInvalid={!!errors.location?.city} />
+            <Form.Control.Feedback type="invalid">{errors.location?.city?.message}</Form.Control.Feedback>
+            <Form.Control type="text" placeholder="Country" {...register("location.country")} isInvalid={!!errors.location?.country} />
+            <Form.Control.Feedback type="invalid">{errors.location?.country?.message}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">

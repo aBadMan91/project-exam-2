@@ -6,7 +6,7 @@ import { Container, Row, Spinner, Alert, Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
 export function HomePage() {
-  const { data, isLoading, isError } = useFetch("https://v2.api.noroff.dev/holidaze/venues");
+  const { data, isLoading, isError } = useFetch("https://v2.api.noroff.dev/holidaze/venues?_owner=true&_bookings=true&sort=created");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const venuesPerPage = 20;

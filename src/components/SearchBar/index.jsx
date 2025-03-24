@@ -6,7 +6,7 @@ import { Container, Form, ListGroup, InputGroup, Button, Row, Col } from "react-
 export function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const { data: venues } = useFetch("https://v2.api.noroff.dev/holidaze/venues");
+  const { data: venues } = useFetch("https://v2.api.noroff.dev/holidaze/venues?sort=created");
   const navigate = useNavigate();
 
   useEffect(() => {
