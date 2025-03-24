@@ -8,6 +8,7 @@ import { Logout } from "../../components/Auth/Logout";
 export function ProfilePage() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
+  const storedProfile = JSON.parse(localStorage.getItem("profile"));
   const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
   const [showLogout, setShowLogout] = useState(false);
 
@@ -41,6 +42,8 @@ export function ProfilePage() {
     setShowLogout(true);
   };
 
+  const isOwnProfile = storedProfile?.name === name;
+
   return (
     <Container className="mt-5">
       <Row>
@@ -61,39 +64,43 @@ export function ProfilePage() {
           </Col>
         )}
       </Row>
-      <Row className="mt-2">
-        <Col>
-          <Button as={Link} to={`/profile/${profile.name}/bookings`} className="text-start w-100 d-flex justify-content-between align-items-center">
-            <span>Your Bookings</span>
-            <span>&gt;</span>
-          </Button>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col>
-          <Button as={Link} to={`/profile/${profile.name}/venues`} className="text-start w-100 d-flex justify-content-between align-items-center">
-            <span>Your Venues</span>
-            <span>&gt;</span>
-          </Button>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col>
-          <Button as={Link} to={`/profile/${profile.name}/edit`} className="text-start w-100 d-flex justify-content-between align-items-center">
-            <span>Edit Profile</span>
-            <span>&gt;</span>
-          </Button>
-        </Col>
-      </Row>
-      <Row className="mt-5">
-        <Col>
-          <Button onClick={handleLogoutClick} className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
-            <span>Logout</span>
-            <span>&gt;</span>
-          </Button>
-        </Col>
-      </Row>
-      {showLogout && <Logout />}
+      {isOwnProfile && (
+        <>
+          <Row className="mt-2">
+            <Col>
+              <Button as={Link} to={`/profile/${profile.name}/bookings`} className="text-start w-100 d-flex justify-content-between align-items-center">
+                <span>Your Bookings</span>
+                <span>&gt;</span>
+              </Button>
+            </Col>
+          </Row>
+          <Row className="mt-2">
+            <Col>
+              <Button as={Link} to={`/profile/${profile.name}/venues`} className="text-start w-100 d-flex justify-content-between align-items-center">
+                <span>Your Venues</span>
+                <span>&gt;</span>
+              </Button>
+            </Col>
+          </Row>
+          <Row className="mt-2">
+            <Col>
+              <Button as={Link} to={`/profile/${profile.name}/edit`} className="text-start w-100 d-flex justify-content-between align-items-center">
+                <span>Edit Profile</span>
+                <span>&gt;</span>
+              </Button>
+            </Col>
+          </Row>
+          <Row className="mt-5">
+            <Col>
+              <Button onClick={handleLogoutClick} className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
+                <span>Logout</span>
+                <span>&gt;</span>
+              </Button>
+            </Col>
+          </Row>
+          {showLogout && <Logout />}
+        </>
+      )}
     </Container>
   );
 }

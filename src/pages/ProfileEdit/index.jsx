@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { useUpdateData } from "../../hooks/useUpdateData";
 import { Container, Row, Spinner, Alert, Button, Form } from "react-bootstrap";
@@ -14,7 +14,9 @@ const schema = yup.object().shape({
 
 export function ProfileEdit() {
   const { name } = useParams();
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const storedProfile = JSON.parse(localStorage.getItem("profile"));
   const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
   const { isError: isUpdateError, putData } = useUpdateData(token);
 
@@ -24,6 +26,13 @@ export function ProfileEdit() {
     setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  // Redirect to home if the user is trying to edit another user's profile
+  useEffect(() => {
+    if (storedProfile?.name !== name) {
+      navigate("/");
+    }
+  }, [name, storedProfile, navigate]);
 
   useEffect(() => {
     if (profile) {
