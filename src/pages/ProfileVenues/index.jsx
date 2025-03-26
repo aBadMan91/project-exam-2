@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { Link } from "react-router-dom";
-import { VenueCard } from "../../components/VenueCard";
+import { VenueCardProfile } from "../../components/VenueCardProfile";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 
 export function ProfileVenues() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
   const storedProfile = JSON.parse(localStorage.getItem("profile"));
-  const { data: profileVenues, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/venues`, token);
+  const { data: profileVenues, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/venues?_count`, token);
 
   useEffect(() => {
     if (storedProfile) {
@@ -43,7 +43,7 @@ export function ProfileVenues() {
       </Row>
       <Row>
         {profileVenues.length > 0 ? (
-          profileVenues.map((venue) => <VenueCard key={venue.id} venue={venue} />)
+          profileVenues.map((venue) => <VenueCardProfile key={venue.id} venue={venue} />)
         ) : (
           <Col>
             <Alert variant="info">No venues available.</Alert>
