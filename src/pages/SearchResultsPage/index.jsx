@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { Container, Row } from "react-bootstrap";
-import { VenueCard } from "../../components/VenueCard";
+import { VenueCard } from "../../components/Cards/VenueCard";
 import { SearchBar } from "../../components/SearchBar";
 
 export function SearchResultsPage() {

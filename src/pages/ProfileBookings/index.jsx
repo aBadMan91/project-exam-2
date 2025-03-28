@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
-import { Link } from "react-router-dom";
+import { VenueCardProfile } from "../../components/Cards/VenueCardProfile";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 
 export function ProfileBookings() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
-  const { data: profile, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, token);
+  const storedProfile = JSON.parse(localStorage.getItem("profile"));
+  const { data: profileBookings, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/bookings`, token);
 
   useEffect(() => {
-    if (profile) {
-      document.title = "Holidaze | " + profile.name + " Bookings";
+    if (storedProfile) {
+      document.title = "Holidaze | " + storedProfile.name + " Bookings";
     }
-  }, [profile]);
+  }, [storedProfile]);
 
-  console.log(profile);
+  console.log(profileBookings);
   if (isLoading) {
     return (
       <Container className="text-center mt-5">
@@ -29,7 +30,7 @@ export function ProfileBookings() {
   if (isError) {
     return (
       <Container className="mt-5">
-        <Alert variant="danger">Error fetching profile. Please try again later.</Alert>
+        <Alert variant="danger">Error fetching profileBookings. Please try again later.</Alert>
       </Container>
     );
   }
@@ -37,7 +38,16 @@ export function ProfileBookings() {
   return (
     <Container className="mt-5">
       <Row>
-        <h1>Your Bookings</h1>
+        <h1>Your Venues</h1>
+      </Row>
+      <Row>
+        {profileBookings.length > 0 ? (
+          profileBookings.map((venue) => <VenueCardProfile key={venue.id} venue={venue} />)
+        ) : (
+          <Col>
+            <Alert variant="info">No venues available.</Alert>
+          </Col>
+        )}
       </Row>
     </Container>
   );

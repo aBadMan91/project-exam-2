@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
-import { Link } from "react-router-dom";
-import { VenueCardProfile } from "../../components/VenueCardProfile";
+import { VenueCardProfile } from "../../components/Cards/VenueCardProfile";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 
 export function ProfileVenues() {

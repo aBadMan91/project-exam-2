@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
-import { VenueCard } from "../../components/VenueCard";
+import { VenueCard } from "../../components/Cards/VenueCard";
 import { SearchBar } from "../../components/SearchBar";
 import { Container, Row, Spinner, Alert, Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
