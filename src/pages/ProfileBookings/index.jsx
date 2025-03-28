@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { VenueCardProfile } from "../../components/Cards/VenueCardProfile";
-import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
+import { Container, Col, Row, Spinner, Alert } from "react-bootstrap";
 
 export function ProfileBookings() {
   const { name } = useParams();
@@ -30,7 +30,7 @@ export function ProfileBookings() {
   if (isError) {
     return (
       <Container className="mt-5">
-        <Alert variant="danger">Error fetching profileBookings. Please try again later.</Alert>
+        <Alert variant="danger">Error fetching bookings. Please try again later.</Alert>
       </Container>
     );
   }
@@ -38,14 +38,14 @@ export function ProfileBookings() {
   return (
     <Container className="mt-5">
       <Row>
-        <h1>Your Venues</h1>
+        <h1>Your Bookings</h1>
       </Row>
       <Row>
         {profileBookings.length > 0 ? (
           profileBookings.map((venue) => <VenueCardProfile key={venue.id} venue={venue} />)
         ) : (
           <Col>
-            <Alert variant="info">No venues available.</Alert>
+            <Alert variant="info">No bookings available.</Alert>
           </Col>
         )}
       </Row>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import { VenueCarousel } from "../../components/Carousel";
-import { Calendar } from "../../components/Calendar";
+import { BookingCalendar } from "../../components/BookingCalendar";
 
 export function VenuePage() {
   const { id } = useParams();
@@ -60,7 +60,7 @@ export function VenuePage() {
           <p>{venue.description}</p>
         </Col>
         <Col xs={12} lg={4}>
-          <Calendar />
+          <BookingCalendar venueId={venue.id} />
         </Col>
       </Row>
     </Container>
