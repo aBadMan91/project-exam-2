@@ -8,7 +8,7 @@ export function ProfileVenues() {
   const { name } = useParams();
   const token = localStorage.getItem("token");
   const storedProfile = JSON.parse(localStorage.getItem("profile"));
-  const { data: profileVenues, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/venues?_count`, token);
+  const { data: profileVenues, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/venues`, token);
 
   useEffect(() => {
     if (storedProfile) {
@@ -17,6 +17,7 @@ export function ProfileVenues() {
   }, [storedProfile]);
 
   console.log(profileVenues);
+
   if (isLoading) {
     return (
       <Container className="text-center mt-5">

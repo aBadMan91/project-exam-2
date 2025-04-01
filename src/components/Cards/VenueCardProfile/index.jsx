@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import styles from "../CardStyles.module.scss";
 
 export function VenueCardProfile({ venue }) {
   const imageUrl = venue.media.length > 0 ? venue.media[0].url : null;
@@ -12,13 +13,14 @@ export function VenueCardProfile({ venue }) {
 
   return (
     <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
-      <Card>
-        {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} />}
-        <Card.Body>
+      <Card className={styles.card}>
+        {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
+        <Card.Body className={styles["card-body"]}>
           <Card.Title>{venue.name}</Card.Title>
           <Card.Text>Location: {location}</Card.Text>
           <Card.Text>Price: {price},- per night</Card.Text>
-          <Col>
+          <Card.Text>Bookings: {venue._count?.bookings ? venue._count.bookings : "No bookings yet"}</Card.Text>
+          <Col className="d-flex justify-content-between">
             <Link to={`/venues/${venue.id}`}>
               <Button variant="primary">View Details</Button>
             </Link>
