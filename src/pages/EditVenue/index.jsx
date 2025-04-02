@@ -68,9 +68,22 @@ export function EditVenue() {
 
   const handleDelete = async () => {
     try {
+      // Show a confirmation dialog
+      const confirmDelete = window.confirm("Are you sure you want to delete this venue?");
+      if (!confirmDelete) {
+        return; // Exit if the user cancels
+      }
+
+      const profile = JSON.parse(localStorage.getItem("profile"));
+      const profileName = profile?.name;
+
+      if (!profileName) {
+        throw new Error("Profile name not found in localStorage");
+      }
+
       await deleteData(`https://v2.api.noroff.dev/holidaze/venues/${id}`);
       console.log("Venue deleted");
-      navigate("/venues");
+      navigate(`/profile/${profileName}/venues`);
     } catch (error) {
       console.error("Failed to delete venue:", error);
     }

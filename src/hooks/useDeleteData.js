@@ -18,8 +18,7 @@ export function useDeleteData(token) {
         throw new Error("Failed to delete data");
       }
 
-      const deletedData = await response.json();
-      return deletedData.data;
+      return { success: true, message: "Data deleted successfully" };
     } catch (error) {
       console.error("Error deleting data:", error);
       setIsError(true);

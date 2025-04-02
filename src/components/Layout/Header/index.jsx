@@ -27,9 +27,8 @@ export function Header() {
     };
   }, [setProfile]);
 
-  const handleLogoutClick = () => {
-    setShowLogout(true);
-  };
+  const openLogoutModal = () => setShowLogout(true);
+  const closeLogoutModal = () => setShowLogout(false);
 
   return (
     <header className="sticky-top">
@@ -49,7 +48,7 @@ export function Header() {
                   <Nav.Link as={Link} to="/create-venue">
                     Create a Venue
                   </Nav.Link>
-                  <Nav.Link onClick={handleLogoutClick}>Logout</Nav.Link>
+                  <Nav.Link onClick={openLogoutModal}>Logout</Nav.Link>
                 </>
               ) : (
                 <>
@@ -65,7 +64,7 @@ export function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {showLogout && <Logout />}
+      <Logout show={showLogout} onClose={closeLogoutModal} />
     </header>
   );
 }
