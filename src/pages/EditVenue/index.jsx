@@ -68,10 +68,9 @@ export function EditVenue() {
 
   const handleDelete = async () => {
     try {
-      // Show a confirmation dialog
       const confirmDelete = window.confirm("Are you sure you want to delete this venue?");
       if (!confirmDelete) {
-        return; // Exit if the user cancels
+        return;
       }
 
       const profile = JSON.parse(localStorage.getItem("profile"));
