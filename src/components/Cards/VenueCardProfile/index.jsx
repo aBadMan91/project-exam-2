@@ -12,7 +12,7 @@ export function VenueCardProfile({ venue }) {
   const price = venue.price ? `$${venue.price.toFixed(2)}` : "Price not available";
 
   return (
-    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
+    <Col xs={12} sm={12} md={6} lg={4} className="mb-4">
       <Card className={styles.card}>
         {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
         <Card.Body className={styles["card-body"]}>
@@ -23,6 +23,9 @@ export function VenueCardProfile({ venue }) {
           <Col className="d-flex justify-content-between">
             <Link to={`/venues/${venue.id}`}>
               <Button variant="primary">View Details</Button>
+            </Link>
+            <Link to={`/venue-bookings/${venue.id}`}>
+              <Button variant="primary">View Bookings</Button>
             </Link>
             <Link to={`/edit-venue/${venue.id}`}>
               <Button variant="success">Edit Venue</Button>

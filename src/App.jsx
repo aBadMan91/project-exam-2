@@ -12,6 +12,7 @@ import { ProfileVenues } from "./pages/ProfileVenues";
 import { ProfileEdit } from "./pages/ProfileEdit";
 import { CreateVenue } from "./pages/CreateVenue";
 import { EditVenue } from "./pages/EditVenue";
+import { VenueBookings } from "./pages/VenueBookings";
 import { SearchBar } from "./components/SearchBar";
 import { SearchResultsPage } from "./pages/SearchResultsPage";
 
@@ -27,9 +28,10 @@ function App() {
         <Route path="profile/:name" element={<ProfilePage />} />
         <Route path="profile/:name/bookings" element={<ProfileBookings />} />
         <Route path="profile/:name/venues" element={<ProfileVenues />} />
-        <Route path="profile/:name/edit" element={<ProfileEdit />} />
+        <Route path="venue-bookings/:id" element={<VenueBookings />} />
         <Route path="create-venue" element={<CreateVenue />} />
         <Route path="edit-venue/:id" element={<EditVenue />} />
+        <Route path="profile/:name/edit" element={<ProfileEdit />} />
         <Route path="/" element={<SearchBar />} />
         <Route path="/venues" element={<SearchResultsPage />} />
       </Route>

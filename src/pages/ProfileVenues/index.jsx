@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { VenueCardProfile } from "../../components/Cards/VenueCardProfile";
-import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
+import { Container, Col, Row, Spinner, Alert } from "react-bootstrap";
 
 export function ProfileVenues() {
   const { name } = useParams();

@@ -38,9 +38,8 @@ export function ProfilePage() {
     );
   }
 
-  const handleLogoutClick = () => {
-    setShowLogout(true);
-  };
+  const openLogoutModal = () => setShowLogout(true);
+  const closeLogoutModal = () => setShowLogout(false);
 
   const isOwnProfile = storedProfile?.name === name;
 
@@ -92,13 +91,13 @@ export function ProfilePage() {
           </Row>
           <Row className="mt-5">
             <Col>
-              <Button onClick={handleLogoutClick} className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
+              <Button onClick={openLogoutModal} className="text-start w-100 d-flex justify-content-between align-items-center" variant="danger">
                 <span>Logout</span>
                 <span>&gt;</span>
               </Button>
             </Col>
           </Row>
-          {showLogout && <Logout />}
+          <Logout show={showLogout} onClose={closeLogoutModal} />
         </>
       )}
     </Container>
