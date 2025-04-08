@@ -2,6 +2,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #00619b;
+  color: #fff;
 }
 
 .card-img-top {
@@ -14,4 +16,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

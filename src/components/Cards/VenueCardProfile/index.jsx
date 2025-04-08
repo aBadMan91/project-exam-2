@@ -14,24 +14,23 @@ export function VenueCardProfile({ venue }) {
   return (
     <Col xs={12} sm={12} md={6} lg={4} className="mb-4">
       <Card className={styles.card}>
-        {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
-        <Card.Body className={styles["card-body"]}>
-          <Card.Title>{venue.name}</Card.Title>
-          <Card.Text>Location: {location}</Card.Text>
-          <Card.Text>Price: {price},- per night</Card.Text>
-          <Card.Text>Bookings: {venue._count?.bookings ? venue._count.bookings : "No bookings yet"}</Card.Text>
-          <Col className="d-flex justify-content-between">
-            <Link to={`/venues/${venue.id}`}>
-              <Button variant="primary">View Details</Button>
-            </Link>
-            <Link to={`/venue-bookings/${venue.id}`}>
-              <Button variant="primary">View Bookings</Button>
-            </Link>
-            <Link to={`/edit-venue/${venue.id}`}>
-              <Button variant="success">Edit Venue</Button>
-            </Link>
-          </Col>
-        </Card.Body>
+        <Link to={`/venues/${venue.id}`} className={styles["card-link"]}>
+          {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
+          <Card.Body className={styles["card-body"]}>
+            <Card.Title>{venue.name}</Card.Title>
+            <Card.Text>Location: {location}</Card.Text>
+            <Card.Text>Price: {price},- per night</Card.Text>
+            <Card.Text>Bookings: {venue._count?.bookings ? venue._count.bookings : "No bookings yet"}</Card.Text>
+          </Card.Body>
+        </Link>
+        <Col className="d-flex justify-content-between my-2">
+          <Link to={`/venue-bookings/${venue.id}`} className="me-2 ms-2">
+            <Button variant="primary">View Bookings</Button>
+          </Link>
+          <Link to={`/edit-venue/${venue.id}`} className="me-2 ms-2">
+            <Button variant="success">Edit Venue</Button>
+          </Link>
+        </Col>
       </Card>
     </Col>
   );

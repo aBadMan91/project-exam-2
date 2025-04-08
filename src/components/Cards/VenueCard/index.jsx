@@ -20,15 +20,14 @@ export function VenueCard({ venue }) {
   return (
     <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
       <Card className={styles.card}>
-        {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
-        <Card.Body className={styles["card-body"]}>
-          <Card.Title>{venue.name}</Card.Title>
-          <Card.Text>Location: {location}</Card.Text>
-          <Card.Text>Price: {price},- per night</Card.Text>
-          <Link to={`/venues/${venue.id}`}>
-            <Button variant="primary">View Details</Button>
-          </Link>
-        </Card.Body>
+        <Link to={`/venues/${venue.id}`} className={styles["card-link"]}>
+          {imageUrl && <Card.Img variant="top" src={imageUrl} alt={imageAlt} className={styles["card-img-top"]} />}
+          <Card.Body className={styles["card-body"]}>
+            <Card.Title>{venue.name}</Card.Title>
+            <Card.Text>Location: {location}</Card.Text>
+            <Card.Text>Price: {price},- per night</Card.Text>
+          </Card.Body>
+        </Link>
       </Card>
     </Col>
   );
