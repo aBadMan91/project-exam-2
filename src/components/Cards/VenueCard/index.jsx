@@ -6,6 +6,12 @@ import Col from "react-bootstrap/Col";
 import styles from "../CardStyles.module.scss";
 
 export function VenueCard({ venue }) {
+  const maxNameLength = 50;
+
+  if (venue.name.length > maxNameLength) {
+    return null;
+  }
+
   const imageUrl = venue.media.length > 0 ? venue.media[0].url : null;
   const imageAlt = venue.media.length > 0 ? venue.media[0].alt : "No image available";
   const location = venue.location ? `${venue.location.city}, ${venue.location.country}` : "Location not available";

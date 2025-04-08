@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateData } from "../../hooks/useCreateData";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
+  name: yup.string().required("Name is required").max(50, "Name cannot exceed 50 characters"),
   description: yup.string().required("Description is required"),
   media: yup.array().of(
     yup.object().shape({
