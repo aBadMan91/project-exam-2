@@ -8,8 +8,10 @@ import { BookingCalendar } from "../../components/BookingCalendar";
 
 export function VenuePage() {
   const { id } = useParams();
-  const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_owner=true`);
+  const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_owner=true&_bookings=true`);
   const [profile] = useLocalStorage("profile", null);
+
+  console.log(venue);
 
   useEffect(() => {
     if (venue) {
