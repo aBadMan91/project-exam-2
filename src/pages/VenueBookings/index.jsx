@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Container, Row, Col, Spinner, Alert, Button } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert, Button, Card } from "react-bootstrap";
 import { VenueCarousel } from "../../components/Carousel";
 import { BookingCalendar } from "../../components/BookingCalendar";
 
@@ -62,7 +62,29 @@ export function VenueBookings() {
           <p>Upcoming Bookings: {venue._count.bookings}</p>
         </Col>
       </Row>
-      <Row></Row>
+      <Row>
+        {venue.bookings.map((booking) => (
+          <Col key={booking.id} xs={12} className="mb-3">
+            <Card className="p-3">
+              <Card.Body>
+                <Card.Title>Booking ID: {booking.id}</Card.Title>
+                <Card.Text>
+                  <strong>Customer:</strong> {booking.customer.name} ({booking.customer.email})
+                </Card.Text>
+                <Card.Text>
+                  <strong>Booking Dates:</strong> {new Date(booking.dateFrom).toLocaleDateString()} - {new Date(booking.dateTo).toLocaleDateString()}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Guests:</strong> {booking.guests}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Created:</strong> {new Date(booking.created).toLocaleDateString()}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 }

@@ -1,46 +1,50 @@
 import React, { useState } from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import styles from "./BookingCalendar.module.scss";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useCreateData } from "../../hooks/useCreateData";
 
-export function BookingCalendar({ venueId }) {
-  console.log("Received venueId:", venueId);
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+export function BookingCalendar({ venueId, bookings = [] }) {
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("token");
   const { postData } = useCreateData(token);
 
-  const handleCheckInChange = (event) => {
-    setCheckInDate(event.target.value);
+  const getBookedDates = () => {
+    const dates = [];
+    bookings.forEach(({ dateFrom, dateTo }) => {
+      const from = new Date(dateFrom);
+      const to = new Date(dateTo);
+      for (let d = new Date(from); d <= to; d.setDate(d.getDate() + 1)) {
+        dates.push(new Date(d).toDateString());
+      }
+    });
+    return dates;
   };
 
-  const handleCheckOutChange = (event) => {
-    setCheckOutDate(event.target.value);
-  };
+  const bookedDates = getBookedDates();
 
-  const handleGuestsChange = (event) => {
-    setGuests(Number(event.target.value));
+  const tileDisabled = ({ date }) => {
+    return bookedDates.includes(date.toDateString());
   };
-
-  const today = new Date().toISOString().split("T")[0];
 
   const handleBookNow = async () => {
+    if (!checkInDate || !checkOutDate) return;
+
     setLoading(true);
     try {
       const bookingData = {
-        dateFrom: checkInDate,
-        dateTo: checkOutDate,
-        guests: Number(guests),
+        dateFrom: checkInDate.toISOString(),
+        dateTo: checkOutDate.toISOString(),
+        guests,
         venueId,
       };
-      console.log("Booking data:", bookingData);
 
       const createdBooking = await postData("https://v2.api.noroff.dev/holidaze/bookings", bookingData);
-      console.log("Booking created:", createdBooking);
-
-      // Display a success message
       alert("Booking confirmed!");
     } catch (error) {
       console.error("Failed to create booking:", error);
@@ -52,70 +56,30 @@ export function BookingCalendar({ venueId }) {
   return (
     <Container className="mt-5">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Form>
-            <Form.Group controlId="check-in">
-              <Form.Label>Check-In Date</Form.Label>
-              <Form.Control type="date" value={checkInDate} onChange={handleCheckInChange} placeholder="Select check-in date" min={today} />
-            </Form.Group>
-            <Form.Group controlId="check-out" className="mt-3">
-              <Form.Label>Check-Out Date</Form.Label>
-              <Form.Control type="date" value={checkOutDate} onChange={handleCheckOutChange} placeholder="Select check-out date" min={checkInDate || today} />
-            </Form.Group>
-            <Form.Group controlId="guests" className="mt-3">
-              <Form.Label>Number of Guests</Form.Label>
-              <Form.Control type="number" value={guests} onChange={handleGuestsChange} placeholder="Enter number of guests" min={1} />
-            </Form.Group>
-            <Button variant="primary" className="mt-3" onClick={handleBookNow} disabled={!checkInDate || !checkOutDate || guests < 1}>
-              {loading ? "Booking..." : "Book Now"}
-            </Button>
-          </Form>
+        <Col md={{ span: 6, offset: 3 }} className={styles.calendarWrapper}>
+          <h4>Select Check-In and Check-Out Dates</h4>
+          <Calendar
+            selectRange
+            onChange={(dates) => {
+              if (Array.isArray(dates)) {
+                setCheckInDate(dates[0]);
+                setCheckOutDate(dates[1]);
+              }
+            }}
+            tileDisabled={tileDisabled}
+            minDate={new Date()}
+          />
+
+          <Form.Group controlId="guests" className="mt-4">
+            <Form.Label>Number of Guests</Form.Label>
+            <Form.Control type="number" value={guests} onChange={(e) => setGuests(Number(e.target.value))} min={1} />
+          </Form.Group>
+
+          <Button variant="primary" className="mt-3 d-block mx-auto" onClick={handleBookNow} disabled={!checkInDate || !checkOutDate || guests < 1}>
+            {loading ? "Booking..." : "Book Now"}
+          </Button>
         </Col>
       </Row>
     </Container>
   );
 }
-
-// import React, { useState } from "react";
-// import { Form, Container, Row, Col, Button } from "react-bootstrap";
-
-// export function Calendar() {
-//   const [checkInDate, setCheckInDate] = useState("");
-//   const [checkOutDate, setCheckOutDate] = useState("");
-
-//   const handleCheckInChange = (event) => {
-//     setCheckInDate(event.target.value);
-//   };
-
-//   const handleCheckOutChange = (event) => {
-//     setCheckOutDate(event.target.value);
-//   };
-
-//   const today = new Date().toISOString().split("T")[0];
-
-//   const handleBookNow = () => {
-//     console.log("Booking for:", checkInDate, checkOutDate);
-//   };
-
-//   return (
-//     <Container className="mt-5">
-//       <Row>
-//         <Col md={{ span: 6, offset: 3 }}>
-//           <Form>
-//             <Form.Group controlId="check-in">
-//               <Form.Label>Check-In Date</Form.Label>
-//               <Form.Control type="date" value={checkInDate} onChange={handleCheckInChange} placeholder="Select check-in date" min={today} />
-//             </Form.Group>
-//             <Form.Group controlId="check-out" className="mt-3">
-//               <Form.Label>Check-Out Date</Form.Label>
-//               <Form.Control type="date" value={checkOutDate} onChange={handleCheckOutChange} placeholder="Select check-out date" min={checkInDate || today} />
-//             </Form.Group>
-//             <Button variant="primary" className="mt-3" onClick={handleBookNow} disabled={!checkInDate || !checkOutDate}>
-//               Book Now
-//             </Button>
-//           </Form>
-//         </Col>
-//       </Row>
-//     </Container>
-//   );
-// }

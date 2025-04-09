@@ -41,3 +41,9 @@ button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
 }
+
+.btn-primary {
+  background-color: $main-color;
+  color: #fff;
+  border: solid 1px #fff;
+}

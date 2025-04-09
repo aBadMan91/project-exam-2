@@ -51,7 +51,7 @@ export function VenuePage() {
         </Col>
       </Row>
       <Row>
-        <Col xs={12} lg={8}>
+        <Col xs={12} lg={6}>
           <h2>Price: {venue.price},- per night</h2>
           <h3>Rating: {venue.rating}/5</h3>
           {profile && profile.name === venue.owner.name && (
@@ -74,8 +74,8 @@ export function VenuePage() {
             <p>{venue.description}</p>
           </Row>
         </Col>
-        <Col xs={12} lg={4}>
-          <BookingCalendar venueId={venue.id} />
+        <Col xs={12} lg={6}>
+          <BookingCalendar venueId={venue.id} bookings={venue.bookings} />
         </Col>
       </Row>
     </Container>
