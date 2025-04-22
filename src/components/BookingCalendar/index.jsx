@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styles from "./BookingCalendar.module.scss";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Card, Form, Button } from "react-bootstrap";
 import { useCreateData } from "../../hooks/useCreateData";
 
 export function BookingCalendar({ venueId, bookings = [] }) {
@@ -54,32 +54,32 @@ export function BookingCalendar({ venueId, bookings = [] }) {
   };
 
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col md={{ span: 6, offset: 3 }} className={styles.calendarWrapper}>
-          <h4>Select Check-In and Check-Out Dates</h4>
-          <Calendar
-            selectRange
-            onChange={(dates) => {
-              if (Array.isArray(dates)) {
-                setCheckInDate(dates[0]);
-                setCheckOutDate(dates[1]);
-              }
-            }}
-            tileDisabled={tileDisabled}
-            minDate={new Date()}
-          />
+    <Card className={`${styles.cardWrapper} ms-lg-auto mx-auto`}>
+      <Card.Body>
+        <Card.Title className="text-center mb-4 fs-5">Select Check-In and Check-Out Dates</Card.Title>
 
-          <Form.Group controlId="guests" className="mt-4">
-            <Form.Label>Number of Guests</Form.Label>
-            <Form.Control type="number" value={guests} onChange={(e) => setGuests(Number(e.target.value))} min={1} />
-          </Form.Group>
+        <Calendar
+          selectRange
+          onChange={(dates) => {
+            if (Array.isArray(dates)) {
+              setCheckInDate(dates[0]);
+              setCheckOutDate(dates[1]);
+            }
+          }}
+          tileDisabled={tileDisabled}
+          minDate={new Date()}
+          className={styles.calendar}
+        />
 
-          <Button variant="primary" className="mt-3 d-block mx-auto" onClick={handleBookNow} disabled={!checkInDate || !checkOutDate || guests < 1}>
-            {loading ? "Booking..." : "Book Now"}
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+        <Form.Group controlId="guests" className="mt-4">
+          <Form.Label>Number of Guests</Form.Label>
+          <Form.Control type="number" value={guests} onChange={(e) => setGuests(Number(e.target.value))} min={1} />
+        </Form.Group>
+
+        <Button variant="primary" className="mt-3 w-100" onClick={handleBookNow} disabled={!checkInDate || !checkOutDate || guests < 1}>
+          {loading ? "Booking..." : "Book Now"}
+        </Button>
+      </Card.Body>
+    </Card>
   );
 }

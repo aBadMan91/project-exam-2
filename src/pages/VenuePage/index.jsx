@@ -50,10 +50,10 @@ export function VenuePage() {
           <VenueCarousel media={venue.media} />
         </Col>
       </Row>
-      <Row>
-        <Col xs={12} lg={6}>
+      <Row className="mt-4 mb-4">
+        <Col xs={12} lg={7}>
           <h2>Price: {venue.price},- per night</h2>
-          <h3>Rating: {venue.rating}/5</h3>
+          {/* <h3>Rating: {venue.rating}/5</h3> */}
           {profile && profile.name === venue.owner.name && (
             <Row className="my-4">
               <Col>
@@ -74,7 +74,7 @@ export function VenuePage() {
             <p>{venue.description}</p>
           </Row>
         </Col>
-        <Col xs={12} lg={6}>
+        <Col xs={12} lg={5}>
           <BookingCalendar venueId={venue.id} bookings={venue.bookings} />
         </Col>
       </Row>
