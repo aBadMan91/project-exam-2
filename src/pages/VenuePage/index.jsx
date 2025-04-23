@@ -75,7 +75,7 @@ export function VenuePage() {
           </Row>
         </Col>
         <Col xs={12} lg={5}>
-          <BookingCalendar venueId={venue.id} bookings={venue.bookings} />
+          <BookingCalendar venueId={venue.id} bookings={venue.bookings} maxGuests={venue.maxGuests} />{" "}
         </Col>
       </Row>
     </Container>
