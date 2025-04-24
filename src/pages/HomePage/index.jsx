@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { VenueCard } from "../../components/Cards/VenueCard";
 import { SearchBar } from "../../components/SearchBar";
+import { HomePageCarousel } from "../../components/CarouselHomePage";
 import { Container, Row, Spinner, Alert, Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
@@ -15,6 +16,24 @@ export function HomePage() {
 
   const currentVenues = data.slice((currentPage - 1) * venuesPerPage, currentPage * venuesPerPage);
 
+  const homePageSlides = [
+    {
+      url: "https://images.pexels.com/photos/1049298/pexels-photo-1049298.jpeg",
+      alt: "First slide",
+      caption: { title: "Welcome to Holidaze", text: "Find the best venues for your next adventure." },
+    },
+    {
+      url: "https://images.pexels.com/photos/31748642/pexels-photo-31748642/free-photo-of-charming-stone-street-in-historic-european-village.jpeg",
+      alt: "Second slide",
+      caption: { title: "Explore Our Venues", text: "Discover amazing places to stay." },
+    },
+    {
+      url: "https://images.pexels.com/photos/17824132/pexels-photo-17824132/free-photo-of-hill-in-the-hobbiton-movie-set.jpeg",
+      alt: "Third slide",
+      caption: { title: "Book Your Stay", text: "Easy and convenient booking process." },
+    },
+  ];
+
   useEffect(() => {
     document.title = `Holidaze | Home | Page ${currentPage}`;
   }, [currentPage]);
@@ -22,7 +41,6 @@ export function HomePage() {
   const handlePageChange = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setSearchParams({ page: pageNumber });
-      // window.scrollTo(0, 0);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -48,6 +66,7 @@ export function HomePage() {
   return (
     <Container className="mt-5">
       <SearchBar />
+      <HomePageCarousel slides={homePageSlides} />
       <h1>Venues</h1>
       <Row>{currentVenues.length > 0 ? currentVenues.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <p className="text-center">No venues available</p>}</Row>
       <div className="d-flex justify-content-center mt-4">

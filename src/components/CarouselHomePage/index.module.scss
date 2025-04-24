@@ -1,0 +1,16 @@
+.carousel-caption {
+  background-color: rgba(0, 97, 155, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.carousel-img {
+  height: 600px;
+  border-radius: 5px;
+  object-fit: cover;
+}
