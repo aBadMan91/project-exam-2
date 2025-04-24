@@ -45,7 +45,7 @@ export function ProfilePage() {
     <Container className="mt-5">
       <Row>
         <Col className="text-center">
-          <Image src={profile.avatar.url} alt={profile.avatar.alt} />
+          <Image src={profile.avatar.url} alt={profile.avatar.alt} fluid />
         </Col>
       </Row>
       <Row className="mt-3 mb-5">

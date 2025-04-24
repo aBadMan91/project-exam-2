@@ -1,4 +1,4 @@
-import React, { useState, useEffect, version } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -10,28 +10,45 @@ import "./index.scss";
 export function Header() {
   const [profile, setProfile] = useLocalStorage("profile", null);
   const [showLogout, setShowLogout] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleStorageChange = () => {
       const updatedProfile = localStorage.getItem("profile");
       setProfile(updatedProfile ? JSON.parse(updatedProfile) : null);
     };
-
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, [setProfile]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
+
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   const openLogoutModal = () => setShowLogout(true);
   const closeLogoutModal = () => setShowLogout(false);
 
   return (
     <header className="sticky-top">
-      <Navbar expand="sm" className="mb-2">
+      <Navbar expanded={menuOpen} onToggle={(isExpanded) => setMenuOpen(isExpanded)} expand="sm" className="mb-2" ref={menuRef}>
         <Container fluid className="my-3">
           <Navbar.Brand as={Link} to="/">
             Holidaze
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleMenu} />
           <Navbar.Collapse id="basic-navbar-nav" className="custom-navbar-collapse justify-content-end">
             <Nav>
               {profile ? (
