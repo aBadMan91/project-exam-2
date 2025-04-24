@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { VenueCard } from "../../components/Cards/VenueCard";
 import { SearchBar } from "../../components/SearchBar";
@@ -11,10 +11,13 @@ export function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const venuesPerPage = 20;
-  const totalPages = Math.ceil(data.length / venuesPerPage);
+
+  const validVenues = data.filter((venue) => venue.name.length <= 50 && venue.media.length > 0);
+
+  const totalPages = Math.ceil(validVenues.length / venuesPerPage);
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  const currentVenues = data.slice((currentPage - 1) * venuesPerPage, currentPage * venuesPerPage);
+  const currentVenues = validVenues.slice((currentPage - 1) * venuesPerPage, currentPage * venuesPerPage);
 
   const homePageSlides = [
     {

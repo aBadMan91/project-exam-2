@@ -4,6 +4,12 @@
   flex-direction: column;
   background-color: #00619b;
   color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .card-img-top {
