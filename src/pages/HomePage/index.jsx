@@ -65,8 +65,8 @@ export function HomePage() {
 
   return (
     <Container className="mt-5">
-      <SearchBar />
       <HomePageCarousel slides={homePageSlides} />
+      <SearchBar />
       <h1>Venues</h1>
       <Row>{currentVenues.length > 0 ? currentVenues.map((venue) => <VenueCard key={venue.id} venue={venue} />) : <p className="text-center">No venues available</p>}</Row>
       <div className="d-flex justify-content-center mt-4">
