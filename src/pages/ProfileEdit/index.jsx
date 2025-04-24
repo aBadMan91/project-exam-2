@@ -44,11 +44,18 @@ export function ProfileEdit() {
 
   const onSubmit = async (data) => {
     try {
-      await putData(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, {
+      const updatedProfile = {
         avatar: { url: data.avatar },
         venueManager: data.venueManager,
-      });
+      };
+
+      await putData(`https://v2.api.noroff.dev/holidaze/profiles/${name}`, updatedProfile);
+
+      const newStoredProfile = { ...storedProfile, ...updatedProfile };
+      localStorage.setItem("profile", JSON.stringify(newStoredProfile));
+
       alert("Profile updated successfully");
+      window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Error updating profile. Please try again later.");

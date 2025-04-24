@@ -71,14 +71,16 @@ export function ProfilePage() {
               </Button>
             </Col>
           </Row>
-          <Row className="mt-2">
-            <Col>
-              <Button as={Link} to={`/profile/${profile.name}/venues`} className="text-start w-100 d-flex justify-content-between align-items-center">
-                <span>Your Venues</span>
-                <span>&gt;</span>
-              </Button>
-            </Col>
-          </Row>
+          {profile.venueManager && (
+            <Row className="mt-2">
+              <Col>
+                <Button as={Link} to={`/profile/${profile.name}/venues`} className="text-start w-100 d-flex justify-content-between align-items-center">
+                  <span>Your Venues</span>
+                  <span>&gt;</span>
+                </Button>
+              </Col>
+            </Row>
+          )}
           <Row className="mt-2">
             <Col>
               <Button as={Link} to={`/profile/${profile.name}/edit`} className="text-start w-100 d-flex justify-content-between align-items-center">
