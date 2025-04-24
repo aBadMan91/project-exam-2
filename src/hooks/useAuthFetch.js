@@ -36,7 +36,6 @@ export function useAuthFetch(url, token) {
     if (token) {
       getData();
     } else {
-      console.error("No token provided");
       setIsError(true);
       setIsLoading(false);
     }

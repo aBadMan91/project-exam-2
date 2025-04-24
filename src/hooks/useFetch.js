@@ -15,7 +15,6 @@ export function useFetch(url) {
         const data = json.data;
         setData(data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
       } finally {
         setIsLoading(false);

@@ -42,7 +42,6 @@ export function Register() {
       }
 
       const result = await response.json();
-      console.log("Registration successful", result);
       navigate("/login");
     } catch (error) {
       console.error("Error:", error);

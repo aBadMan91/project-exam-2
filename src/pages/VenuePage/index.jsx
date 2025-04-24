@@ -11,8 +11,6 @@ export function VenuePage() {
   const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_owner=true&_bookings=true`);
   const [profile] = useLocalStorage("profile", null);
 
-  console.log(venue);
-
   useEffect(() => {
     if (venue) {
       document.title = "Holidaze | " + venue.name;

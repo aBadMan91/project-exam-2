@@ -13,7 +13,6 @@ export function Header() {
 
   useEffect(() => {
     const handleStorageChange = () => {
-      console.log("Storage change event");
       const updatedProfile = localStorage.getItem("profile");
       setProfile(updatedProfile ? JSON.parse(updatedProfile) : null);
     };
@@ -83,7 +82,6 @@ export function Header() {
 
 //   useEffect(() => {
 //     const handleStorageChange = () => {
-//       console.log("Storage change event");
 //       const updatedProfile = localStorage.getItem("profile");
 //       setProfile(updatedProfile ? JSON.parse(updatedProfile) : null);
 //     };
@@ -151,7 +149,6 @@ export function Header() {
 
 //   useEffect(() => {
 //     const handleStorageChange = () => {
-//       console.log("Storage change event");
 //       const updatedProfile = localStorage.getItem("profile");
 //       setProfile(updatedProfile ? JSON.parse(updatedProfile) : null);
 //       setIsLoggedIn(updatedProfile !== null);

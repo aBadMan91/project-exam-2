@@ -16,8 +16,6 @@ export function ProfileVenues() {
     }
   }, [storedProfile]);
 
-  console.log(profileVenues);
-
   if (isLoading) {
     return (
       <Container className="text-center mt-5">

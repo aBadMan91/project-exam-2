@@ -43,7 +43,6 @@ export function Login() {
       }
 
       const result = await response.json();
-      console.log("Login successful", result);
 
       setProfile(result.data);
 

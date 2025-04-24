@@ -10,15 +10,12 @@ export function ProfileBookings() {
   const storedProfile = JSON.parse(localStorage.getItem("profile"));
   const { data: profileBookings, isLoading, isError } = useAuthFetch(`https://v2.api.noroff.dev/holidaze/profiles/${name}/bookings?_customer=true&_venue=true`, token);
 
-  console.log(profileBookings);
-
   useEffect(() => {
     if (storedProfile) {
       document.title = "Holidaze | " + storedProfile.name + " Bookings";
     }
   }, [storedProfile]);
 
-  console.log(profileBookings);
   if (isLoading) {
     return (
       <Container className="text-center mt-5">

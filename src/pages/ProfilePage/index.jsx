@@ -18,8 +18,6 @@ export function ProfilePage() {
     }
   }, [profile]);
 
-  console.log(profile);
-
   if (isLoading) {
     return (
       <Container className="text-center mt-5">

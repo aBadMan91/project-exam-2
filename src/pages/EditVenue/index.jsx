@@ -59,7 +59,6 @@ export function EditVenue() {
   const onSubmit = async (data) => {
     try {
       const updatedVenue = await updateData(`https://v2.api.noroff.dev/holidaze/venues/${id}`, data);
-      console.log("Venue updated:", updatedVenue);
       navigate(`/venues/${updatedVenue.id}`);
     } catch (error) {
       console.error("Failed to update venue:", error);
@@ -81,7 +80,6 @@ export function EditVenue() {
       }
 
       await deleteData(`https://v2.api.noroff.dev/holidaze/venues/${id}`);
-      console.log("Venue deleted");
       navigate(`/profile/${profileName}/venues`);
     } catch (error) {
       console.error("Failed to delete venue:", error);
