@@ -32,26 +32,3 @@ export function VenueCarousel({ media }) {
     </Container>
   );
 }
-
-// import React from "react";
-// import { Carousel, Alert, Container } from "react-bootstrap";
-
-// export function VenueCarousel({ media }) {
-//   if (!media || media.length === 0) {
-//     return (
-//       <Container className="text-center mt-3">
-//         <Alert variant="warning">No images available for this venue</Alert>
-//       </Container>
-//     );
-//   }
-
-//   return (
-//     <Carousel interval={null} indicators={media.length > 1}>
-//       {media.map((mediaItem, index) => (
-//         <Carousel.Item key={index}>
-//           <img src={mediaItem.url} alt={mediaItem.alt || "Venue image"} className="d-block w-100 img-fluid" />
-//         </Carousel.Item>
-//       ))}
-//     </Carousel>
-//   );
-// }
