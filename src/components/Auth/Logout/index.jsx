@@ -19,7 +19,7 @@ export function Logout({ show, onClose }) {
       <Modal.Header closeButton>
         <Modal.Title>Confirm Logout</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Are you sure you want to log out?</Modal.Body>
+      <Modal.Body>You are about to log out. Continue?</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
           Cancel
