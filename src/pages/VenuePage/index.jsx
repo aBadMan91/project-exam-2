@@ -6,6 +6,11 @@ import { Container, Row, Col, Spinner, Alert, Button } from "react-bootstrap";
 import { VenueCarousel } from "../../components/Carousel";
 import { BookingCalendar } from "../../components/BookingCalendar";
 
+/**
+ * VenuePage displays detailed information about a specific venue, including media, bookings, and amenities.
+ *
+ * @returns {JSX.Element} The rendered Venue Page.
+ */
 export function VenuePage() {
   const { id } = useParams();
   const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_owner=true&_bookings=true`);

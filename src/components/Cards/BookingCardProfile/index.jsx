@@ -5,6 +5,28 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import styles from "../CardStyles.module.scss";
 
+/**
+ * BookingCardProfile component displays a card with booking details for a specific venue.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.booking - The booking object containing details about the booking.
+ * @param {Object} props.booking.venue - The venue of the booking.
+ * @param {string} props.booking.venue.id - The unique id for the venue.
+ * @param {string} props.booking.venue.name - The name of the venue.
+ * @param {Array} props.booking.venue.media - An array of media objects for the venue.
+ * @param {Object} [props.booking.venue.media[0]] - The first media object (if available).
+ * @param {string} props.booking.venue.media[0].url - The URL of the media image.
+ * @param {string} props.booking.venue.media[0].alt - The alt text for the media image.
+ * @param {Object} props.booking.venue.location - The location object of the venue.
+ * @param {string} props.booking.venue.location.city - The city where the venue is located.
+ * @param {string} props.booking.venue.location.country - The country where the venue is located.
+ * @param {number} props.booking.venue.price - The price per night for the venue.
+ * @param {string} props.booking.dateFrom - The start date of the booking.
+ * @param {string} props.booking.dateTo - The end date of the booking.
+ * @param {number} props.booking.guests - The number of guests for the booking.
+ *
+ * @returns {JSX.Element} The rendered card with venue details and booking information.
+ */
 export function BookingCardProfile({ booking }) {
   const venue = booking.venue;
   const imageUrl = venue.media.length > 0 ? venue.media[0].url : null;

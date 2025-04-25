@@ -4,6 +4,12 @@ import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { BookingCardProfile } from "../../components/Cards/BookingCardProfile";
 import { Container, Col, Row, Spinner, Alert } from "react-bootstrap";
 
+/**
+ * ProfileBookings page displays the user's bookings with venues.
+ * Includes loading and error states.
+ *
+ * @returns {JSX.Element} The rendered Profile Bookings page.
+ */
 export function ProfileBookings() {
   const { name } = useParams();
   const token = localStorage.getItem("token");

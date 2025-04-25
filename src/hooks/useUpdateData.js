@@ -1,5 +1,16 @@
 import { useState } from "react";
 
+/**
+ * Custom React hook for updating data via a PUT request.
+ *
+ * @param {string} token - The authentication token for the request.
+ *
+ * @returns {Object} Contains:
+ * - `isError` (boolean): Indicates whether an error occurred during the PUT request.
+ * - `putData` (Function): Sends a PUT request. Accepts:
+ *    - `putUrl` (string): The API endpoint to send the PUT request to.
+ *    - `putBody` (Object): The body of the PUT request.
+ */
 export function useUpdateData(token) {
   const [isError, setIsError] = useState(false);
 

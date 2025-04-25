@@ -3,9 +3,13 @@ import { useParams, Link } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Container, Row, Col, Spinner, Alert, Button, Card } from "react-bootstrap";
-import { VenueCarousel } from "../../components/Carousel";
-import { BookingCalendar } from "../../components/BookingCalendar";
 
+/**
+ * VenueBookings page displays detailed booking information for a specific venue.
+ * Includes loading and error states.
+ *
+ * @returns {JSX.Element} The rendered Venue Bookings page.
+ */
 export function VenueBookings() {
   const { id } = useParams();
   const { data: venue, isLoading, isError } = useFetch(`https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true&_owner=true`);

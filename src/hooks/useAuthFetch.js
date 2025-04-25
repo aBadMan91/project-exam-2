@@ -1,5 +1,16 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Custom React hook for fetching data from an API with authentication.
+ *
+ * @param {string} url - The API endpoint to fetch data from.
+ * @param {string} token - The authentication token to include in the request headers.
+ *
+ * @returns {Object} An object containing:
+ * - `data` (any): The fetched data, or `null` if not yet available.
+ * - `isLoading` (boolean): Indicates whether the data is currently being loaded.
+ * - `isError` (boolean): Indicates whether an error occurred during the fetch.
+ */
 export function useAuthFetch(url, token) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

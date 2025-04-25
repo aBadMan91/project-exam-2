@@ -5,6 +5,11 @@ import { Container, Row } from "react-bootstrap";
 import { VenueCard } from "../../components/Cards/VenueCard";
 import { SearchBar } from "../../components/SearchBar";
 
+/**
+ * SearchResultsPage displays venues matching the user's search query.
+ *
+ * @returns {JSX.Element} The rendered Search Results page.
+ */
 export function SearchResultsPage() {
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");

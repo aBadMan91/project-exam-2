@@ -5,6 +5,26 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import styles from "../CardStyles.module.scss";
 
+/**
+ * VenueCardProfile component displays a detailed card for a specific venue,
+ * including location, price, and booking information, with options to view bookings or edit the venue.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.venue - The venue object containing details about the venue.
+ * @param {string} props.venue.id - The unique id for the venue.
+ * @param {string} props.venue.name - The name of the venue.
+ * @param {Array} props.venue.media - An array of media objects for the venue.
+ * @param {string} props.venue.media[0].url - The URL of the media image.
+ * @param {string} props.venue.media[0].alt - The alt text for the media image.
+ * @param {Object} props.venue.location - The location object of the venue.
+ * @param {string} props.venue.location.city - The city where the venue is located.
+ * @param {string} props.venue.location.country - The country where the venue is located.
+ * @param {number} props.venue.price - The price per night for the venue.
+ * @param {Object} props.venue._count - The count object containing related data.
+ * @param {number} props.venue._count.bookings - The number of bookings for the venue.
+ *
+ * @returns {JSX.Element} The rendered card with venue details and action buttons.
+ */
 export function VenueCardProfile({ venue }) {
   const imageUrl = venue.media.length > 0 ? venue.media[0].url : null;
   const imageAlt = venue.media.length > 0 ? venue.media[0].alt : "No image available";

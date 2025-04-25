@@ -5,6 +5,12 @@ import styles from "./BookingCalendar.module.scss";
 import { Card, Form, Button } from "react-bootstrap";
 import { useCreateData } from "../../hooks/useCreateData";
 
+/**
+ * Calculates the total guests for each booked date.
+ *
+ * @param {Array} bookings - Array of bookings with `dateFrom`, `dateTo`, and `guests`.
+ * @returns {Object} Dates mapped to total guests.
+ */
 function getBookedDatesWithGuests(bookings) {
   const datesWithGuests = {};
   bookings.forEach(({ dateFrom, dateTo, guests }) => {
@@ -18,6 +24,18 @@ function getBookedDatesWithGuests(bookings) {
   return datesWithGuests;
 }
 
+/**
+ * BookingCalendar component for selecting dates and booking a venue.
+ *
+ * This component allows users to select check-in and check-out dates.
+ * It also displays the number of guests that can be booked for each date.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.venueId - Venue ID.
+ * @param {Array} [props.bookings=[]] - Existing bookings.
+ * @param {number} props.maxGuests - Max guests allowed.
+ * @returns {JSX.Element} Booking calendar UI.
+ */
 export function BookingCalendar({ venueId, bookings = [], maxGuests }) {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);

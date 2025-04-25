@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+/**
+ * Custom React hook for deleting data via a DELETE request.
+ *
+ * @param {string} token - The authentication token for the request.
+ *
+ * @returns {Object} Contains:
+ * - `isError` (boolean): Whether an error occurred.
+ * - `deleteData` (Function): Sends a DELETE request. Accepts `url` (string) and returns a Promise with the result.
+ */
 export function useDeleteData(token) {
   const [isError, setIsError] = useState(false);
 

@@ -26,6 +26,13 @@ const schema = yup.object().shape({
   location: yup.object().shape({}),
 });
 
+/**
+ * CreateVenue page allows users to create a new venue by filling out a form.
+ * The form includes fields for venue details, media, location, and amenities.
+ * On successful submission, the venue is created via an API call, and the user is redirected.
+ *
+ * @returns {JSX.Element} The rendered Create Venue page.
+ */
 export function CreateVenue() {
   const {
     register,

@@ -16,6 +16,14 @@ const schema = yup.object().shape({
   venueManager: yup.boolean(),
 });
 
+/**
+ * Register component renders a registration form for new users.
+ * The form includes fields for name, email, password, and an optional venue manager checkbox.
+ * It validates input using Yup and react-hook-form, and submits the data to the API.
+ * On successful registration, the user is redirected to the login page.
+ *
+ * @returns {JSX.Element} The rendered registration form.
+ */
 export function Register() {
   const {
     register,

@@ -4,6 +4,12 @@ import { useAuthFetch } from "../../hooks/useAuthFetch";
 import { VenueCardProfile } from "../../components/Cards/VenueCardProfile";
 import { Container, Col, Row, Spinner, Alert } from "react-bootstrap";
 
+/**
+ * ProfileVenues page displays the user's venues.
+ * Includes loading and error states.
+ *
+ * @returns {JSX.Element} The rendered Profile Venues page.
+ */
 export function ProfileVenues() {
   const { name } = useParams();
   const token = localStorage.getItem("token");

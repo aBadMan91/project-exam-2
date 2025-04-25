@@ -15,6 +15,14 @@ const schema = yup.object().shape({
   password: yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
 });
 
+/**
+ * Login component for user authentication.
+ *
+ * This component uses yup for validation and react-hook-form for form handling.
+ * After it sends a successful POST request to the API, it stores the user's profile and token in local storage.
+ *
+ * @returns {JSX.Element} The rendered login form.
+ */
 export function Login() {
   const {
     register,

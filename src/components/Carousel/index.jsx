@@ -2,6 +2,17 @@ import React, { useState } from "react";
 import { Carousel, Alert, Container, Row, Col, Image } from "react-bootstrap";
 import styles from "./index.module.scss";
 
+/**
+ * VenueCarousel component displays a carousel of media items for a venue,
+ * with thumbnails for navigation and an alert if no media is available.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.media - An array of media objects for the venue.
+ * @param {string} props.media[].url - The URL of the media image.
+ * @param {string} [props.media[].alt] - The alt text for the media image (optional).
+ *
+ * @returns {JSX.Element} The rendered carousel with media items or an alert if no media is provided.
+ */
 export function VenueCarousel({ media }) {
   const [index, setIndex] = useState(0);
 

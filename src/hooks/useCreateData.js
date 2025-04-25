@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+/**
+ * Custom React hook for creating data via a POST request.
+ *
+ * @param {string} token - The authentication token for the request.
+ *
+ * @returns {Object} Contains:
+ * - `isError` (boolean): Whether an error occurred.
+ * - `postData` (Function): Sends a POST request. Accepts `postUrl` (string) and `postBody` (Object).
+ */
 export function useCreateData(token) {
   const [isError, setIsError] = useState(false);
 

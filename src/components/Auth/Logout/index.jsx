@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { Modal, Button } from "react-bootstrap";
 
+/**
+ * Logout component renders a modal to confirm the user's logout action.
+ *
+ * @param {Object} props - The component props.
+ * @param {boolean} props.show - Determines whether the modal is visible.
+ * @param {Function} props.onClose - Callback function to close the modal.
+ *
+ * @returns {JSX.Element} The Logout confirmation modal.
+ */
 export function Logout({ show, onClose }) {
   const [, , removeProfile] = useLocalStorage("profile", null);
   const navigate = useNavigate();

@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import { Container, Col, Row, Spinner, Alert, Image, Button } from "react-bootstrap";
 import { Logout } from "../../components/Auth/Logout";
 
+/**
+ * ProfilePage displays a user's profile information, including avatar, name, and email.
+ * Allows the user to navigate to bookings, venues, or edit their profile.
+ *
+ * @returns {JSX.Element} The rendered Profile Page.
+ */
 export function ProfilePage() {
   const { name } = useParams();
   const token = localStorage.getItem("token");

@@ -6,6 +6,12 @@ import { HomePageCarousel } from "../../components/CarouselHomePage";
 import { Container, Row, Spinner, Alert, Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
+/**
+ * HomePage displays a list of venues, a search bar, and a carousel with featured slides.
+ * Includes pagination for navigating through venues.
+ *
+ * @returns {JSX.Element} The rendered Home Page.
+ */
 export function HomePage() {
   const { data, isLoading, isError } = useFetch("https://v2.api.noroff.dev/holidaze/venues?_owner=true&_bookings=true&sort=created");
   const [searchParams, setSearchParams] = useSearchParams();

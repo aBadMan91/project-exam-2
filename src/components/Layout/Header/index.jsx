@@ -7,6 +7,13 @@ import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { Logout } from "../../Auth/Logout";
 import "./index.scss";
 
+/**
+ * Header component renders the navigation bar for the application.
+ * It includes links for navigation, user profile options, and a logout modal.
+ * The component handles menu toggling, logout modal visibility, and updates based on local storage changes.
+ *
+ * @returns {JSX.Element} The rendered header with navigation and user options.
+ */
 export function Header() {
   const [profile, setProfile] = useLocalStorage("profile", null);
   const [showLogout, setShowLogout] = useState(false);

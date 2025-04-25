@@ -12,6 +12,12 @@ const schema = yup.object().shape({
   venueManager: yup.boolean(),
 });
 
+/**
+ * ProfileEdit page allows users to edit their profile, including avatar and venue manager status.
+ * Redirects users trying to edit another user's profile.
+ *
+ * @returns {JSX.Element} The rendered Profile Edit page.
+ */
 export function ProfileEdit() {
   const { name } = useParams();
   const navigate = useNavigate();
@@ -27,7 +33,6 @@ export function ProfileEdit() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // Redirect to home if the user is trying to edit another user's profile
   useEffect(() => {
     if (storedProfile?.name !== name) {
       navigate("/");

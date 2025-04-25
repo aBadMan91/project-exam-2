@@ -1,5 +1,16 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Custom React hook for managing state synchronized with localStorage.
+ *
+ * @param {string} key - The key to use in localStorage.
+ * @param {any} initialValue - The initial value to set if the key does not exist in localStorage.
+ *
+ * @returns {Array} An array containing:
+ * - `storedValue` (any): The current value in localStorage.
+ * - `setStoredValue` (Function): A function to update the value in localStorage.
+ * - `remove` (Function): A function to remove the key from localStorage and reset the value to the initial value.
+ */
 export function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {

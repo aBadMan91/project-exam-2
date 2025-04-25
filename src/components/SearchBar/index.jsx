@@ -3,6 +3,13 @@ import { useFetch } from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, ListGroup, InputGroup, Button, Row, Col } from "react-bootstrap";
 
+/**
+ * SearchBar component provides a search functionality for venues.
+ * It allows users to search for venues by name and displays matching results in a dropdown list.
+ * Users can navigate to a specific venue or view all venues matching the search query.
+ *
+ * @returns {JSX.Element} The rendered search bar with input, search results, and navigation functionality.
+ */
 export function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
