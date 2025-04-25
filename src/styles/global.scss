@@ -1,0 +1,49 @@
+@use "bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@700;800&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  background-color: $page-color;
+}
+
+.navbar-brand {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+header {
+  background-color: $header-color;
+}
+
+footer {
+  background-color: $footer-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: $main-color;
+  color: #fff;
+  border: solid 1px #fff;
+}

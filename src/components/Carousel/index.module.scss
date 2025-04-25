@@ -1,0 +1,16 @@
+.carousel-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.thumbnail-img {
+  width: 100px;
+  height: 60px;
+}
+
+@media (min-width: 768px) {
+  .carousel-img {
+    max-height: 600px;
+  }
+}
