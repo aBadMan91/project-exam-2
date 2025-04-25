@@ -19,7 +19,6 @@ const schema = yup.object().shape({
   ),
   price: yup.number().required("Price is required").min(0, "Price must be at least 0"),
   maxGuests: yup.number().required("Max guests is required").min(1, "Must have at least 1 guest"),
-  rating: yup.number().default(0),
   meta: yup.object().shape({
     wifi: yup.boolean().default(false),
     parking: yup.boolean().default(false),
